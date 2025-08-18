@@ -1,0 +1,19 @@
+name: Checks
+
+on: [push]
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        run: docker compose build
+
+      - name: Run tests
+        run: docker compose run --rm -T app /bin/sh -c "python manage.py test"
+
+      - name: Run lint
+        run: docker compose run --rm -T app /bin/sh -c "flake8"
