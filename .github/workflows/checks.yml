@@ -18,7 +18,7 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
       - name: checkout
-        use: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: lint
         run: docker compose run --rm app sh -c "flake8"
