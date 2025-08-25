@@ -1,7 +1,8 @@
 name: checks
 
 on: [push]
-  branch: [main]
+  branches:
+    - main 
 
 jobs: 
  Test-lint:
@@ -19,7 +20,7 @@ jobs:
         use: actions/checkout@v4
 
       - name: lint
-        run: docker compose --rm app sh -c "flake8"
+        run: docker compose run --rm app sh -c "flake8"
 
       - name: testing
-        run: docker compose --rm app sh -c "python manage.py test"        
+        run: docker compose run --rm app sh -c "python manage.py test"        
