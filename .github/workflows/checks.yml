@@ -1,21 +1,29 @@
-name: checks
+name : checks
 
 on:
   push:
     branches:
-      - main    
+      - main
 
 jobs: 
- Test-lint:
-    name: testing and linting
+  test-lint:
+    name: test and lint
     runs-on: ubuntu-latest
+
 
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: lint
-        run: docker compose run --rm app sh -c "flake8"
+      - name: test
+        run: docker compose --rm app sh -c "python manage.py test"  
 
-      - name: testing
-        run: docker compose run --rm app sh -c "python manage.py test"        
+      - name: lint
+        run: docker compose --rm app sh -c "flake8"  
+
+
+
+
+
+    
+
